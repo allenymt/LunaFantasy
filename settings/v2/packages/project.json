@@ -1,0 +1,27 @@
+{
+  "__version__": "1.0.6",
+  "general": {
+    "designResolution": {
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "physics": {
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "Luna"
+      },
+      {
+        "index": 2,
+        "name": "Potion"
+      }
+    ],
+    "collisionMatrix": {
+      "0": 7,
+      "1": 7,
+      "2": 7
+    }
+  },
+  "custom_joint_texture_layouts": []
+}
