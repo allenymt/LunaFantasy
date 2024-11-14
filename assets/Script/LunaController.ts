@@ -1,13 +1,9 @@
 import { _decorator, Component, Node, input, Input, KeyCode, EventKeyboard, Vec3, director, RigidBody2D, Vec2 } from 'cc';
 import { FixedUpdate } from './FixedUpdate';
+import { Direction } from '../Enums';
 const { ccclass, property } = _decorator;
 
-enum Direction {
-    Left,
-    Right,
-    Up,
-    Down
-}
+
 
 @ccclass('LunaController')
 export class LunaController extends Component {
@@ -31,8 +27,8 @@ export class LunaController extends Component {
 
 
     // 记住最后按下的方向
-    private lastHorizontalInput: Direction.Left | Direction.Right = null;
-    private lastVerticalInput: Direction.Up | Direction.Down = null;
+    private lastHorizontalInput: Direction.LEFT | Direction.RIGHT = null;
+    private lastVerticalInput: Direction.UP | Direction.DOWN = null;
 
 
     onLoad() {
@@ -64,28 +60,28 @@ export class LunaController extends Component {
             case KeyCode.ARROW_UP:
                 this.isUpPressed = true;
                 // 标记向上箭头被按下
-                this.lastVerticalInput = Direction.Up;
+                this.lastVerticalInput = Direction.UP;
                 break;
 
             // 向下箭头
             case KeyCode.ARROW_DOWN:
                 this.isDownPressed = true;
                 // 标记向下箭头被按下
-                this.lastVerticalInput = Direction.Down;
+                this.lastVerticalInput = Direction.DOWN;
                 break;
 
             // 向左箭头
             case KeyCode.ARROW_LEFT:
                 this.isLeftPressed = true;
                 // 标记向左箭头被按下
-                this.lastHorizontalInput = Direction.Left;
+                this.lastHorizontalInput = Direction.LEFT;
                 break;
 
             //  向右箭头
             case KeyCode.ARROW_RIGHT:
                 this.isRightPressed = true;
                 // 标记向右箭头被按下
-                this.lastHorizontalInput = Direction.Right;
+                this.lastHorizontalInput = Direction.RIGHT;
                 break;
         }
         this.updateMoveDirection();
@@ -98,7 +94,7 @@ export class LunaController extends Component {
             case KeyCode.ARROW_UP:
                 this.isUpPressed = false;
                 if (this.isDownPressed) {
-                    this.lastVerticalInput = Direction.Down;
+                    this.lastVerticalInput = Direction.DOWN;
                 }
                 else {
                     this.lastVerticalInput = null;
@@ -109,7 +105,7 @@ export class LunaController extends Component {
             case KeyCode.ARROW_DOWN:
                 this.isDownPressed = false;
                 if (this.isUpPressed) {
-                    this.lastVerticalInput = Direction.Up;
+                    this.lastVerticalInput = Direction.UP;
                 }
                 else {
                     this.lastVerticalInput = null;
@@ -120,7 +116,7 @@ export class LunaController extends Component {
             case KeyCode.ARROW_RIGHT:
                 this.isRightPressed = false;
                 if (this.isLeftPressed) {
-                    this.lastHorizontalInput = Direction.Left;
+                    this.lastHorizontalInput = Direction.LEFT;
                 }
                 else {
                     this.lastHorizontalInput = null;
@@ -131,7 +127,7 @@ export class LunaController extends Component {
             case KeyCode.ARROW_LEFT:
                 this.isLeftPressed = false;
                 if (this.isRightPressed) {
-                    this.lastHorizontalInput = Direction.Right;
+                    this.lastHorizontalInput = Direction.RIGHT;
                 }
                 else {
                     this.lastHorizontalInput = null;
@@ -145,17 +141,17 @@ export class LunaController extends Component {
 
     updateMoveDirection() {
         //  根据键位改变水平方向移动的位置
-        if (this.lastHorizontalInput == Direction.Left) {
+        if (this.lastHorizontalInput == Direction.LEFT) {
             this._moveDirection.x = -1;
-        } else if (this.lastHorizontalInput == Direction.Right) {
+        } else if (this.lastHorizontalInput == Direction.RIGHT) {
             this._moveDirection.x = 1;
         } else {
             this._moveDirection.x = 0;
         }
         //  根据键位改变竖直方向移动的位置
-        if (this.lastVerticalInput == Direction.Down) {
+        if (this.lastVerticalInput == Direction.DOWN) {
             this._moveDirection.y = -1;
-        } else if (this.lastVerticalInput == Direction.Up) {
+        } else if (this.lastVerticalInput == Direction.UP) {
             this._moveDirection.y = 1;
         } else {
             this._moveDirection.y = 0;
