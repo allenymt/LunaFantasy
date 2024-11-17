@@ -33,7 +33,7 @@ export class Potion extends Component {
 
     private onTriggerStay(event: ITriggerEvent) {
         console.log(event.type, event);
-        console.log("一个没有意义的提交......为了续火花")
+
     }
 
 
